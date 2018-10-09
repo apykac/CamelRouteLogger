@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <bean id="blueprintLogger" class="ru.vsk.implementations.BlueprintLogger">
+        <argument value="someLogFile.log"/>
+    </bean>
+
+    <bean id="classLogger" class="ru.vsk.implementations.ClassLogger">
+        <argument value="someLogFile.log"/>
+    </bean>
+
+    <bean id="emptyLogger" class="ru.vsk.implementations.EmptyLogger"/>
+
+    <service interface="ru.vsk.interfaces.CustomLogger" ref="blueprintLogger">
+        <service-properties>
+            <entry key="custom.logger.name" value="sBlueprintLogger"/>
+        </service-properties>
+    </service>
+
+    <service interface="ru.vsk.interfaces.CustomLogger" ref="classLogger">
+        <service-properties>
+            <entry key="custom.logger.name" value="sClassLogger"/>
+        </service-properties>
+    </service>
+</blueprint>
